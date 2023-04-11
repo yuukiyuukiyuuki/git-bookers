@@ -12,8 +12,9 @@
      <td><%=book.title %></td>
      <td><%=book.body %></td>
      <th clospan="3"></th>
-     <th><%= link_to 'Show',"/books/creates" %></th>
-     <th><%= link_to 'Edit',"books/creates/edit" %></th>
+     <th><%= link_to 'Show',book_path(book.id) %></th>
+     <th><%= link_to 'Edit',edit_book_path(book.id) %></th>
+     <th><%= link_to "destroy",book_path(book.id),method: :delete,"data-confirm"=>"Are you sure?" %></th>
    </tr>
 
   <% end %>
@@ -23,16 +24,15 @@
 
 
 
-    <h1>New book</h1>
-    <!-- form_with部分 -->
-    <%=form_with model: @book do |f| %>
-     <h4>Title</h4>
-     <%=f.text_field:title%>
+<h1>New book</h1>
+  <!-- form_with部分 -->
+  <%=form_with model: @book do |f| %>
+<h4>Title</h4>
+  <%=f.text_field:title%>
 
-     <h4>Body</h4>
-     <%=f.text_area:body%>
-
-    <%=f.submit'Create Book'%>
-  <% end %>
+<h4>Body</h4>
+  <%=f.text_area:body%>
+ <p><%=f.submit'Create Book'%></p>
+<% end %>
 
 
