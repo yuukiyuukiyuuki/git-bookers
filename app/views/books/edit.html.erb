@@ -1,11 +1,36 @@
 <h1>Editing Book</h1>
 <!-- form_with部分　-->
 <%=form_with model: @book do |f| %>
- <h5>Title</h5>
- <%=f.text_field:title%>
- <h4>Body</h4>
- <%=f.text_area:body%>
-
+<% if @book.errors.any? %>
+<div id="error_explanation">
+<h2><%= @book.errors.count %>errors prohibited this book form begin saved</h2>
+  <ul>
+    <% @book.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+  </div>
+<% end %>
+ <div class="field">
+  <% if @book.errors.any? %>
+  <div class="field_with_errors">
+<% end %>
+   <label for="book_title">Title</label>
+   </div>
+  <%=f.text_field:title%>
+  </div>
+  </div>
+</div>
+<div class="field">
+  <% if @book.errors.any? %>
+  <div class="field_with_errors">
+<% end %>
+<label for="book_body">Body</label>
+  </div>
+  <%=f.text_area:body%>
+  </div>
+</div>
+ <div class="actions">
 <p><%=f.submit'Update Book'%></p>
 <% end %>
 
